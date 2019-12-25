@@ -1,0 +1,11 @@
+Program contains a page where funny messages can by viewed, searched for and written by logged in users.
+The program uses a database to store all data.
+During registration, the user is asked for a username, paswword and any sensitve data they want to give to the program for
+safekeeping ;)
+
+Program contains 3 types of users which should only be able to the following:
+1. "RegularUser" Can view and search for messages on the /funnyMessages page and register new "RegularUser" accounts.
+2. "PlusUser" Can do all the above but also can write messages on the /funnyMessages page
+3. "Admin": Can do all the above but also can register any type of user in the /register page while logged in.
+
+Security flaws in the report on the course page.
