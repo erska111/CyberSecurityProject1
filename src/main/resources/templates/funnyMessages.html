@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>FunnyMessages</title>
+    </head>
+    <body>
+
+        <h1>Funny messages</h1>
+        <div th:if="${loggedInAs.userType} != RegularUser">
+        <h2>Write a funny message:</h2>
+        
+        <form action="#" th:action="@{/writeMessage}" method="POST">
+            <p><label for="message">Message</label>: <input type="text" name="content" id="content"/></p>
+            <p><input type="submit" value="Send funny message!" /></p>
+        </form>
+        </div>
+        <p th:if="${loggedInAs} != null" th:text="'Logged in as: ' +${loggedInAs.name}">Logged in as</p>
+        
+        <form th:if="${loggedInAs} != null" method="POST" th:action="@{/logout}">
+            <button type="submit">Kirjaudu ulos</button>
+        </form>
+        <br/>
+        <a th:href="@{/register}">Click here to go to register page</a><br/>
+        
+        
+        <h2>Messages</h2>
+        
+        <ul>
+            <li th:each="message : ${messages}">
+
+                <div th:utext="${message.content}">Default</div><br/><br/>
+                <div th:text="'Sent by: '+${message.owner.name}">Default</div><br/>                         
+                
+                <br/>
+
+            </li>
+
+        </ul>
+        
+        <h2>Search for messages</h2>
+        
+        <form action="#" th:action="@{/writeQuery}" method="POST">
+            <p><label for="queryString">Message content contains string</label>: <input type="text" name="queryString" id="queryString"/></p>
+            <p><input type="submit" value="Find messages!" /></p>
+        </form>
+        
+        <p th:if="${resultSet} != null" th:utext="'Result set: ' +${resultSet}">ResultSet</p>
+
+        <p></p>
+    </body>
+</html>

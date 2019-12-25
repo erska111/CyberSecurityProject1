@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Registration</title>
+    </head>
+    <body>
+
+        <h1>Register a new basic account using this form (Admins may add Admins or PlusUers)</h1>
+
+        <form action="#" th:action="@{/register}" method="POST">
+            <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
+            <p><label for="password">Password</label>: <input type="text" name="password" id="password"/></p>
+            <p><label for="sensitive data">Sensitive data</label>: <input type="text" name="sensitiveData" id="sensitiveData"/></p>
+            <div th:if="${user} != null">
+            <p th:if="${user.userType} != RegularUser"><label for="UserType">User type ("Admin/PlusUser/RegularUser")</label>: <input type="text" name="userType" value="RegularUser" id="UserType"/></p>
+            </div>
+            <p><input type="submit" value="Register account" /></p>
+        </form>
+        
+        <p th:if="${user} != null" th:text="'Logged in as: ' +${user.name}">Logged in as</p>
+        
+        <form th:if="${user} != null" method="POST" th:action="@{/logout}">
+            <button type="submit">Kirjaudu ulos</button>
+        </form>
+
+        <p></p>
+    </body>
+</html>
